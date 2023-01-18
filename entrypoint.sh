@@ -39,9 +39,10 @@ fi
 
 echo "==> Prepare to deploy"
 
+git config --global user.name "${GITHUB_ACTOR}"
+git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+git config --global --add safe.directory /github/workspace/$BUILD_DIR
 git init
-git config user.name "${GITHUB_ACTOR}"
-git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
 if [ -z "$(git status --porcelain)" ]; then
     echo "The BUILD_DIR is setting error or nothing produced" && \
